@@ -47,8 +47,9 @@ class App(object):
                 print('[ERRO WEBSCRAPPING] '+str(e))
 
         self.saveDataSet()
-
+        
         self.cleanData()
+        
         self.insertData()
 
     def openConnection(self):
@@ -57,7 +58,7 @@ class App(object):
             E QUANTIDADES DE PAGINAS QUE SERÃO NECESSÁRIAS PARA ALTERAR A URL
         """
         print('[Produto: '+self.product.upper()+']')
-        print('[Cidade: '+self.stateName+']')
+        print('[Estado: '+self.stateName+']')
         try:
             response = requests.get(self.initialURL)
             time.sleep(5)
@@ -146,7 +147,7 @@ class App(object):
         print('[Salvando o dataset em um arquivo .csv]')
 
         df = pd.DataFrame(self.data)
-        header = ['ID','Timestamp','Titulo','Preco', 'Cidade']
+        header = ['ID','Timestamp','Titulo','Preco', 'Estado']
         df.to_csv(self.filename, index=False, header=header)
         print('[Dados salvos com sucesso]')
 
